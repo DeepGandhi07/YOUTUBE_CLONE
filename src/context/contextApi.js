@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 
 import { fetchDataFromApi } from "../utils/api";
 
-const Context = createContext();
+export const Context = createContext();
 
 export const AppContext = (props) => {
   const [loading, setLoading] = useState(false);
