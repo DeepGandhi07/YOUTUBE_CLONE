@@ -51,7 +51,7 @@ const LeftNav = () => {
         })}
         <hr className="my-5 border-white/[0.2]" />
         <div className="text-white/[0.5] text-[12px]">
-          Clone by: JS Dev Hindi
+          <a href="https://deepgandhi.netlify.app/">Clone by: Deep Gandhi</a>
         </div>
       </div>
     </div>
