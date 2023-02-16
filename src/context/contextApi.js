@@ -1,14 +1,18 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 import { fetchDataFromApi } from "../utils/api";
-
 export const Context = createContext();
 
 export const AppContext = (props) => {
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
-  const [selectCategories, setSelectCategories] = useState("New");
-  const [MobileMenu, setMobileMenu] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState("New");
+  const [mobileMenu, setMobileMenu] = useState(false);
+
+  useEffect(() => {
+    fetchSelectedCategoryData(selectedCategory);
+  }, [selectedCategory]);
+
   const fetchSelectedCategoryData = (query) => {
     setLoading(true);
     fetchDataFromApi(`search/?q=${query}`).then(({ contents }) => {
@@ -17,19 +21,16 @@ export const AppContext = (props) => {
       setLoading(false);
     });
   };
-  useEffect(() => {
-    fetchSelectedCategoryData(selectCategories);
-  }, [selectCategories]);
+
   return (
     <Context.Provider
       value={{
         loading,
         setLoading,
         searchResults,
-        setSearchResults,
-        selectCategories,
-        setSelectCategories,
-        MobileMenu,
+        selectedCategory,
+        setSelectedCategory,
+        mobileMenu,
         setMobileMenu,
       }}
     >
